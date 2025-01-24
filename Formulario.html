@@ -1,0 +1,318 @@
+<html>
+  <header>
+        <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.22.2/dist/css/uikit.min.css" />
+    
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.22.2/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.22.2/dist/js/uikit-icons.min.js"></script>
+  </header>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Muli&display=swap");
+
+    :root {
+      --line-border-fill: #3498db;
+      --line-border-empty: #e0e0e0;
+      --progress-zIndex: -1;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .containerr{
+      align-items: center;
+      background-color: var(--bg-color);
+      display: flex;
+      font-family: "Muli", sans-serif;
+      justify-content: center;
+      margin: 3%;
+      overflow: hidden;
+    }
+
+    .contaienr {
+      align-items: center;
+      text-align: center;
+    }
+
+    .progress-container {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+      max-width: 100%;
+      position: relative;
+      width: 350px;
+    }
+
+    .progress-container::before {
+      background-color: var(--line-border-empty);
+      content: "";
+      height: 4px;
+      left: 0;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      z-index: var(--progress-zIndex);
+    }
+
+    .progress {
+      background-color: var(--line-border-fill);
+      height: 4px;
+      left: 0;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: 0.4s ease;
+      width: 0%;
+      z-index: var(--progress-zIndex);
+    }
+
+    .circle {
+      align-items: center;
+      background-color: #fff;
+      border: 3px solid #e0e0e0;
+      border-radius: 50%;
+      color: #999;
+      display: flex;
+      height: 30px;
+      justify-content: center;
+      transition: 0.4 ease;
+      width: 30px;
+    }
+
+    .circle.active {
+      border-color: var(--line-border-fill);
+    }
+
+    .btn {
+      background-color: var(--line-border-fill);
+      border: 0;
+      border-radius: 6px;
+      color: #fff;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 14px;
+      margin: 5px;
+      padding: 8px 30px;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn:focus {
+      outline: 0;
+    }
+
+    .btn:disabled {
+      background-color: var(--line-border-empty);
+      cursor: not-allowed;
+    }
+  </style>
+  <body>
+    <div class="containerr">
+      <div class="uk-text-lighter">
+      <h1 class="uk-text-bold">Solicitud de beca extranjera</h1>
+      <h4 >llena los campos correspondientes para tu beca</h4>
+      <div class="progress-container">
+        <div class="progress" id="progress"></div>
+        <div class="circle active">1
+        </div>
+        <div class="circle">2</div>
+        <div class="circle">3</div>
+        <div class="circle">4</div>
+      </div>
+
+      <div id="form1" style="display: block">
+            <div>
+              <h3 class="uk-heading-line uk-text-bold">Datos personales</h3>
+             
+              <p class="uk-text-bold">Cual es tu sexo?</p>
+               <div class="uk-margin uk-child-width-auto uk-grid">
+            <label><input class="uk-radio" type="radio" name="radio2" checked> Masculino</label>
+            <label><input class="uk-radio" type="radio" name="radio2"> Femenino</label>
+            </div>
+            
+                <div class="uk-margin">
+                  <p class="uk-text-bold">Acerca de tu nombre y apellido</p>
+            <input class="uk-input" type="text" placeholder="Nombre" aria-label="Nombre">
+              <br></br>
+             <input class="uk-input" type="text" placeholder="Apellido" aria-label="Apellido">
+                 <br></br>
+               <label class="uk-text-bold" for="birthday">Tu fecha de nacimiento</label>
+                  <br></br>
+              <input class="uk-select" type="date" id="birthday" name="birthday">
+           
+                <p class="uk-text-bold">Donde vives?</p>
+            <input class="uk-input" type="text" placeholder="Escribe tu direccion" aria-label="Nombre">
+                <br></br>
+             <label class="uk-form-label" for="form-stacked-select">Ciudad</label>
+                 <br></br>
+        <div class="uk-form-controls">
+            <select class="uk-select" id="form-stacked-select">
+                <option>Santo Domingo</option>
+                <option>Santiago</option>
+            </select>
+        </div>
+        </div>
+            </div>
+        </div>
+      <div id="form2" style="display: none">
+            <h3 class="uk-heading-line uk-text-bold">Acerca de ti</h3>
+           <div class="uk-margin">
+               <p class="uk-text-bold">Cuentanos acerca de ti</p>
+                 <textarea class="uk-textarea" rows="5" placeholder="Escribe sobre ti" aria-label="Textarea"></textarea>
+             <br></br>
+              <p class="uk-text-bold">Cuales son tus ingresos?</p>
+              <div class="uk-form-controls uk-form-controls-text">
+                    <label><input class="uk-checkbox" type="checkbox" name="radio1"> 100,000</label><br>
+                    <label><input class="uk-checkbox" type="checkbox" name="radio1"> 20,000</label><br>
+                     <label><input class="uk-checkbox" type="checkbox" name="radio1"> 10,000</label>
+                </div>
+                 <br></br>
+                 <label for="img1">Envia una presentacion sobre ti</label>
+              <input class="uk-input" type="file" id="img" name="img1" accept="video/*" placeholder="Subir mi video">
+              <br></br>
+                <label for="img">O envia un audio</label>
+                 <input class="uk-input" type="file" id="img" name="img" accept="audio/*" placeholder="Subir mi audio">
+                 
+          </div>
+
+      </div>
+      <div id="form3" style="display: none">
+          <h3 class="uk-heading-line uk-text-bold">Envio de documentos</h3>
+          <div class="uk-margin">
+                  <p class="uk-text-bold">Cedula de identidad</p></p>
+            <input class="uk-input" type="text" placeholder="Cedula de identidad o pasaporte" aria-label="Nombre">
+             <p class="uk-text-bold">Certificado de bachiller</p>
+           <div uk-form-custom="target: true">
+            <input type="file" aria-label="Custom controls">
+            <input class="uk-input uk-form-width-medium" type="text"placeholder="Certificado de bachiller"  aria-label="Custom controls" disabled>
+        </div>
+         <div class="uk-margin">
+              <div uk-form-custom>
+                  <p class="uk-text-bold">Record de notas</p>
+                  <input type="file" aria-label="Custom controls">
+                  <button class="uk-button uk-button-default" type="button" tabindex="-1">Record de notas aqui</button>
+              </div> <br></br>
+                 <div uk-form-custom>
+                  <p class="uk-text-bold">Fotos 2x2</p>
+                  <div class="js-upload uk-placeholder uk-text-center">
+                    <span uk-icon="icon: cloud-upload"></span>
+                    <span class="uk-text-middle">Puedes arrastrar tu foto o simplemente</span>
+                    <div uk-form-custom>
+                        <input type="file" multiple>
+                        <span class="uk-link">selecciona una</span>
+                    </div>
+                </div>
+              </div>
+          </div>
+            </div>
+      </div>
+      <div id="form4" style="display: none">
+            <h3 class="uk-heading-line uk-text-bold">Ya esto es todo :)</h3>
+            <h4>Te enviaremos un correo con la confirmacion de tu formulario</h4>
+             <div class="uk-margin contaienr">
+            <img src="https://s6.imgcdn.dev/YDNeDS.png" alt="YDNeDS.png" border="0" class="uk-height-medium ">
+            </div>
+             <button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom">Subir formulario</button>
+      
+      </div>
+
+      <button class="btn uk-button uk-button-default" id="prev" disabled>Anterior</button>
+      <button class="btn uk-button uk-button-secondary" id="next">Siguiente</button>
+    </div>
+    </div>
+    <script>
+      const progress = document.querySelector("#progress");
+      const prev = document.querySelector("#prev");
+      const next = document.querySelector("#next");
+      const circles = document.querySelectorAll(".circle");
+
+      const forms1 = document.querySelector("#form1");
+      const forms2 = document.querySelector("#form2");
+      const forms3 = document.querySelector("#form3");
+      const forms4 = document.querySelector("#form4");
+
+      let currentActive = 1;
+
+      next.addEventListener("click", () => {
+        currentActive++;
+
+        if (currentActive > circles.length) {
+          currentActive = circles.length;
+        }
+
+        update();
+      });
+
+      prev.addEventListener("click", () => {
+        currentActive--;
+
+        if (currentActive < 1) {
+          currentActive = 1;
+        }
+
+        update();
+      });
+
+      function update() {
+        circles.forEach((circle, idx) => {
+          if (idx < currentActive) {
+            circle.classList.add("active");
+          } else {
+            circle.classList.remove("active");
+          }
+        });
+
+        const actives = document.querySelectorAll(".active");
+
+        progress.style.width = ((actives.length - 1) / (circles.length - 1)) * 100 + "%";
+
+        console.log({ forms1 });
+
+        switch (currentActive) {
+          case 1:
+            forms1.style.display = "block";
+            forms2.style.display = "none";
+            forms3.style.display = "none";
+            forms4.style.display = "none";
+            break;
+          case 2:
+            forms1.style.display = "none";
+            forms2.style.display = "block";
+            forms3.style.display = "none";
+            forms4.style.display = "none";
+            break;
+          case 3:
+            forms1.style.display = "none";
+            forms2.style.display = "none";
+            forms3.style.display = "block";
+            forms4.style.display = "none";
+            break;
+          case 4:
+            forms1.style.display = "none";
+            forms2.style.display = "none";
+            forms3.style.display = "none";
+            forms4.style.display = "block";
+            break;
+          default:
+            break;
+        }
+
+        if (currentActive === 1) {
+        }
+
+        if (currentActive === 1) {
+          prev.disabled = true;
+        } else if (currentActive === circles.length) {
+          next.disabled = true;
+        } else {
+          prev.disabled = false;
+          next.disabled = false;
+        }
+      }
+    </script>
+  </body>
+</html>
